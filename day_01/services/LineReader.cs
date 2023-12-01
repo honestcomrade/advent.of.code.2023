@@ -1,9 +1,10 @@
 using System.Text.RegularExpressions;
+using honestcomrade.advent.util;
+using Microsoft.VisualBasic;
 
 namespace honestcomrade.advent.services;
 public class LineReader
 {
-  private static readonly char Pipe = '|';
   private readonly string _line;
   private static readonly Dictionary<string, string> _numbers = new Dictionary<string, string>
   {
@@ -19,7 +20,7 @@ public class LineReader
   };
 
   private static readonly string regexes =
-    string.Join(Pipe, _numbers.Keys.Select(f => f));
+    string.Join(Delimiters.Pipe, _numbers.Keys.Select(f => f));
 
   public LineReader(string line)
   {
@@ -40,8 +41,9 @@ public class LineReader
 
   private IEnumerable<string> ScanDigits()
   {
-    Regex re = new($"(\\d|${{{regexes}}})");
+    var reStr = $"(?=(\\d|{regexes}))";
+    Regex re = new(reStr);
     var matches = re.Matches(_line);
-    return matches.Select(f => TransformToDigit(f.Value));
+    return matches.Select(f => TransformToDigit(f.Groups?.Values?.Last()?.Value));
   }
 }
