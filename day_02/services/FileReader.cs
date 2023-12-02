@@ -1,4 +1,4 @@
-namespace honestcomrade.advent.services;
+namespace honestcomrade.advent.day02.services;
 public class FileReader
 {
   private readonly List<string> _lines = new();
