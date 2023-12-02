@@ -1,9 +1,9 @@
 ﻿using honestcomrade.advent.services;
 
 namespace honestcomrade.advent;
-public class Main
+public class Run
 {
-  public static void Run()
+  public static void Main()
   {
     var totalScore = 0;
     var lines = new FileReader("./inputs/input.txt").ReadLines();
