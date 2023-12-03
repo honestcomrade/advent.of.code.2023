@@ -5,17 +5,32 @@ public class Run
 {
   public static void Main()
   {
-    int numBlue = 14, numRed = 12, numGreen = 13;
-    var lines = new FileReader("./inputs/testinput.txt").ReadLines();
-    Console.WriteLine($"Red: {numRed}");
-    Console.WriteLine($"Green: {numGreen}");
-    Console.WriteLine($"Blue: {numBlue}");
+    // part 1, not needed for part 2
+    // int numBlue = 14,
+    //   numRed = 12,
+    //   numGreen = 13;
+    int total = 0;
+    var lines = new FileReader("./inputs/input.txt").ReadLines();
+    // part 1, not needed for part 2
+    // Console.WriteLine($"Red: {numRed}");
+    // Console.WriteLine($"Green: {numGreen}");
+    // Console.WriteLine($"Blue: {numBlue}");
     foreach (var line in lines)
     {
-      Console.WriteLine(line);
       var lineService = new LineService(line);
-      var number = lineService.ReadLine();
-      Console.WriteLine(number.ToString());
+      var game = lineService.ReadLine();
+      // part1, not needed for part 2
+      // if (game.Green.Any(f => f > numGreen) || game.Red.Any(f => f > numRed) || game.Blue.Any(f => f > numBlue))
+      // {
+      //   continue;
+      // }
+      var highestRed = game.Red.Max();
+      var highestGreen = game.Green.Max();
+      var highestBlue = game.Blue.Max();
+      var linePower = highestRed * highestGreen * highestBlue;
+      Console.WriteLine($"{game.GameNumber}: Highest values: Red:{highestRed}, Blue: {highestBlue}, Green: {highestGreen}, LinePower: {linePower}");
+      total += linePower;
+      Console.WriteLine($"New Total: {total}");
     }
   }
 }
