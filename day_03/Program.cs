@@ -9,6 +9,7 @@ public class Run
     var lines = new FileReader("./inputs/testinput.txt").ReadLines();
     foreach (var line in lines)
     {
+      var parsedLine = new LineReader(line);
       Console.WriteLine(line);
     }
   }
